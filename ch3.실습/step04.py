@@ -1,6 +1,10 @@
 import numpy as np
 
 
+"""
+수치 미분 구현
+"""
+
 class Variable:
     def __init__(self, data):
         self.data = data
