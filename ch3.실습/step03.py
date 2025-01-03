@@ -1,5 +1,8 @@
 import numpy as np
 
+"""
+Exp 함수 구현
+"""
 
 class Variable:
     def __init__(self, data):
