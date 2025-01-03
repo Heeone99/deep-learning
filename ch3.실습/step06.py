@@ -1,5 +1,10 @@
 import numpy as np
 
+
+"""
+역전파 구현
+"""
+
 class Variable:
     def __init__(self, data):
         self.data = data
