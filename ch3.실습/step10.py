@@ -2,6 +2,11 @@ import unittest
 import numpy as np
 
 
+"""
+유닛 테스트
+"""
+
+
 class Variable:
     def __init__(self, data):
         if data is None:
