@@ -1,5 +1,8 @@
 import numpy as np
 
+"""
+넘파이의 다차원 배열
+"""
 
 class Variable:
     def __init__(self, data):
@@ -17,9 +20,6 @@ print(x.data)
 x.data = np.array(2.0)
 print(x.data)
 
-"""
-넘파이의 다차원 배열
-"""
 
 # array
 # 배열을 간편하게 생성하기 위한 고수준 함수로 일반적인 배열 작업에 적합
