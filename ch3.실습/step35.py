@@ -11,6 +11,7 @@ import dezero.functions as F
 하이퍼볼릭 탄젠트 함수 고차 미분
 """
 
+
 # 하이퍼볼릭 탄젠트 함수
 # class Tanh(Function):
 #     def forward(self, x):
