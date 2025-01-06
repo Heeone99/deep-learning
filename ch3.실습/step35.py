@@ -11,6 +11,23 @@ import dezero.functions as F
 하이퍼볼릭 탄젠트 함수 고차 미분
 """
 
+# 하이퍼볼릭 탄젠트 함수
+# class Tanh(Function):
+#     def forward(self, x):
+#         xp = cuda.get_array_module(x)
+#         y = xp.tanh(x)
+#         return y
+
+#     def backward(self, gy):
+#         y = self.outputs[0]()  
+#         gx = gy * (1 - y * y)
+#         return gx
+
+
+# def tanh(x):
+#     return Tanh()(x)
+
+
 x = Variable(np.array(1.0))
 y = F.tanh(x)
 x.name = 'x'

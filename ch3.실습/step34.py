@@ -15,7 +15,7 @@ sin 함수 고차 미분
 
 x = Variable(np.linspace(-7, 7, 200))
 y = F.sin(x)
-y.backward(create_graph=True)
+y.backward()
 
 logs = [y.data]
 
