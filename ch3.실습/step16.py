@@ -30,13 +30,13 @@ class Variable:
             self.grad = np.ones_like(self.data)
 
         funcs = []
-        seen_set = set()
+        seen_set = set() # 세대의 중복 추가 방지를 위한 set 함수
 
         def add_func(f):
             if f not in seen_set:
                 funcs.append(f)
                 seen_set.add(f)
-                funcs.sort(key=lambda x: x.generation)
+                funcs.sort(key=lambda x: x.generation)  # x.generation을 키로 사용해 정렬
 
         add_func(self.creator)
 
