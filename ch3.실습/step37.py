@@ -25,6 +25,8 @@ y = F.sum(t)
 
 y.backward(retain_grad=True)
 
+# 기울기의 형상과 데이터(순전파 때의 데이터)의 형상이 일치
+
 print(y.grad)
 print(t.grad)
 print(x.grad)
