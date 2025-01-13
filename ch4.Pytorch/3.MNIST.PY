@@ -1,4 +1,4 @@
-import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt 
 import torch
 from torch import optim
 import torch.nn as nn
@@ -61,17 +61,19 @@ def train(
 
             # 각 미니배치 손실 합을 기록
             running_loss += computed_loss.item()
-        loss_lt.append(running_loss/len(train_load))
-        print("Epoch: {} train loss: {}".format(epoch+1, running_loss/len(train_load)))
-        
-        plt.plot([i for i in range(1,epoch+1)], loss_lt)
-        plt.xlabel("Epoch")
-        plt.ylabel("Training Loss")
-        plt.title("MNIST Training Loss: Optimizer {}, lr {}".format("SGD", lr))
-        plt.show()
+        loss_lt.append(running_loss / len(train_load))
+        print(f"Epoch: {epoch + 1} train loss: {running_loss / len(train_load)}")
 
-        # 상태를 체크포인트로 파일에 저장
-        torch.save(classifier.state_dict(), 'mnist.pt')
+    # 손실 그래프를 에포크 후에 한 번만 출력
+    plt.plot([i for i in range(1, epochs + 1)], loss_lt)
+    plt.xlabel("Epoch")
+    plt.ylabel("Training Loss")
+    plt.title(f"MNIST Training Loss: Optimizer SGD, lr {lr}")
+    plt.show()
+
+    # 상태를 체크포인트로 파일에 저장
+    torch.save(classifier.state_dict(), 'mnist.pt')
+
 
 def test(classifier=classifier, loss_fn=loss):
     classifier.eval()
@@ -86,13 +88,10 @@ def test(classifier=classifier, loss_fn=loss):
 
             # 손실과 정확도
             computed_loss += loss_fn(out, target)
-            accuracy += torch.sum(preds==target)
+            accuracy += torch.sum(preds == target)
 
-        print("Test loss: {}, test accuracy: {}".format(
-            computed_loss.item()/(len(test_load)*64), 
-            accuracy*100.0/(len(test_load)*64)
-        ))
-
+        print(f"Test loss: {computed_loss.item() / len(test_load):.4f}, "
+              f"test accuracy: {accuracy.item() * 100.0 / len(test_data):.2f}%")
 
 
 # 학습 실행
