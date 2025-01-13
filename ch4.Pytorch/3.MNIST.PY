@@ -8,7 +8,7 @@ from torchvision.transforms import ToTensor
 
 
 """
-MNIST 분류기 구축
+MNIST 분류기 학습 및 테스트
 """
 
 
