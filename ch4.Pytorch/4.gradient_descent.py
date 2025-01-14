@@ -1,6 +1,8 @@
 import torch
 import torch.nn as nn
 import copy
+import matplotlib.pyplot as plt
+import numpy as np
 from torchvision.datasets import MNIST
 from torchvision.transforms import ToTensor
 from torch.utils.data import DataLoader
@@ -111,13 +113,13 @@ def inference(testloader, model, loss_fn):
         for inputs, labels in testloader:
             outputs = model(inputs)
             loss = loss_fn(outputs, labels)
-        running_loss += loss
+        running_loss += loss.item()
     running_loss /= len(testloader)
     return running_loss
 
 
 results = []
-for alpha in torch.arange(-2, 2, 0.05):
+for alpha in torch.arange(-2, 2, 0.05, dtype=torch.float32):
     beta = 1.0 - alpha
     # 선형 보간된 파라미터를 계산
     for p in opt_state_dict:
@@ -127,5 +129,13 @@ for alpha in torch.arange(-2, 2, 0.05):
     model.load_state_dict(test_state_dict)
     # 선형 보간된 파라미터를 사용해서 손실을 계산
     loss = inference(trainloader, model, loss_fn)
-results.append(loss.item())
-print(loss.item())
+    results.append(loss)
+    print(f"Alpha: {alpha:.2f}, Loss: {loss:.4f}")
+
+
+# 시각화
+plt.plot(np.arange(-2, 2, 0.05), results, 'ro')
+plt.ylabel('Incurred Error')
+plt.xlabel('Alpha')
+plt.title('Loss Interpolation between Random and Trained Model')
+plt.show()
